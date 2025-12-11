@@ -97,5 +97,10 @@ func (o *ollamaModelBuilder) Build(ctx context.Context, params *LLMParams) (Tool
 
 	o.applyParamsToOllamaConfig(conf, params)
 
+	conf.HTTPClient = newHeaderClient(map[string]string{
+		"user-id":  "l00011553",
+		"platform": "xCopilot-PC",
+	})
+
 	return ollama.NewChatModel(ctx, conf)
 }

@@ -98,5 +98,10 @@ func (o *openaiModelBuilder) Build(ctx context.Context, params *LLMParams) (Tool
 
 	o.applyParamsToOpenaiConfig(conf, params)
 
+	conf.HTTPClient = newHeaderClient(map[string]string{
+		"user-id":  "l00011553",
+		"platform": "xCopilot-PC",
+	})
+
 	return openai.NewChatModel(ctx, conf)
 }

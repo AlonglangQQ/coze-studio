@@ -91,5 +91,10 @@ func (q *qwenModelBuilder) Build(ctx context.Context, params *LLMParams) (ToolCa
 
 	q.applyParamsToQwenConfig(conf, params)
 
+	conf.HTTPClient = newHeaderClient(map[string]string{
+		"user-id":  "l00011553",
+		"platform": "xCopilot-PC",
+	})
+
 	return qwen.NewChatModel(ctx, conf)
 }

@@ -119,6 +119,11 @@ func (b *arkModelBuilder) Build(ctx context.Context, params *LLMParams) (ToolCal
 
 	b.applyParamsToChatModelConfig(chatModelConf, params)
 
+	chatModelConf.HTTPClient = newHeaderClient(map[string]string{
+		"user-id":  "l00011553",
+		"platform": "xCopilot-PC",
+	})
+
 	logs.CtxDebugf(ctx, "build ark model with config: %v", conv.DebugJsonToStr(chatModelConf))
 
 	return ark.NewChatModel(ctx, chatModelConf)

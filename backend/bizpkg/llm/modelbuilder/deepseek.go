@@ -83,5 +83,10 @@ func (d *deepseekModelBuilder) Build(ctx context.Context, params *LLMParams) (To
 
 	d.applyParamsToChatModelConfig(conf, params)
 
+	conf.HTTPClient = newHeaderClient(map[string]string{
+		"user-id":  "l00011553",
+		"platform": "xCopilot-PC",
+	})
+
 	return deepseek.NewChatModel(ctx, conf)
 }

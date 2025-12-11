@@ -84,5 +84,10 @@ func (c *claudeModelBuilder) Build(ctx context.Context, params *LLMParams) (Tool
 
 	c.applyParamsToChatModelConfig(conf, params)
 
+	conf.HTTPClient = newHeaderClient(map[string]string{
+		"user-id":  "l00011553",
+		"platform": "xCopilot-PC",
+	})
+
 	return claude.NewChatModel(ctx, conf)
 }
